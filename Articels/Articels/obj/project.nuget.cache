@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XdDn07lAvfQ7aJ+H2/LvDNFkRcPZu8TKYzkCO0rPrvhNhgmo69Fbjjlk6Yi7B3n+egUXSc6qpRNW0WCkhWUJVg==",
+  "dgSpecHash": "pKi1/zoGjGpUGQfMt5ObVhzuY2Fk+v0PFMXqgWBtj2m3/AQN3N1q/SHCdD7pWRTY2g3jkt3uS223NppyB+RUMw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\khale\\source\\repos\\Articels\\Articels\\Articels.csproj",
+  "projectFilePath": "C:\\Users\\khale\\Desktop\\Asp core projects\\Articel\\articel\\Articels\\Articels\\Articels.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khale\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\khale\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

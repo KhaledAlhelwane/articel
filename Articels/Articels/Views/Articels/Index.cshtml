@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Articels.Models.Articelss>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+
+    <reference path="~/jquery/jquery.js" />
+</head>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+  
+</p>
+@{if (ViewBag.success !=null)
+{
+    <div class="alert alert-warning" role="alert">
+       you have not made any articel yet!!
+        </div>
+        
+    }else{
+        <div id="_alert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
+	user deleted successfully.
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+        @foreach (var item in Model)
+        {
+            <div class="card shadow-lg float" style="width: 18rem;">
+            @if(item.ImageOfArticel!=null){
+                <img alt="image profile" class="card-img-top" src="data:image*;base64,@(Convert.ToBase64String(item.ImageOfArticel))" />
+                }<div class="card-body ">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a asp-action="Details"  asp-route-id="@item.id" class="btn btn-primary">Open</a>
+                    <a href="javascript:;" data-id="@item.id" class="btn btn-danger Deletme">Delete</a>
+                </div>
+            </div>
+
+        }
+}
+}
+<script src="~/lib/bootbox.js/bootbox.js"></script>
+<script src="~/lib/bootbox.js/bootbox.min.js"></script>
+@section Scripts{
+  <script>
+  $(document).ready(function(){
+      $(".Deletme").on("click",function(){
+          let b=$(this);
+         bootbox.confirm({
+    message: 'This is a confirm with custom button text and color! Do you like it?',
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-danger'
+        }
+    },
+    callback: function (result) {
+       if(result){
+						$.ajax({
+					    url:'Api/Delete/?id='+b.data('id'),
+						method:'DELETE',
+						success:function(){
+                                    //b.parents('.Card').fadeOut();
+                                            b.closest('.card').fadeOut();
+							$('#_alert').removeClass('d-none');
+									setTimeout(function () { $('#_alert').addClass('d-none'); },3000);
+						},
+						error:function(){
+							alert("there is an error");
+						}
+
+						});
+					}
+    }
+});
+      });
+  });
+  </script>
+}

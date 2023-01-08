@@ -10,5 +10,9 @@ namespace Articels.Data
             : base(options)
         {
         }
+        public DbSet<Articelss> Articels { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Openines> Openines { get; set; }
+
     }
 }

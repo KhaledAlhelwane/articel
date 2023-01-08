@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\khale\\source\\repos\\Articels\\Articels\\Articels.csproj": {}
+    "C:\\Users\\khale\\Desktop\\Asp core projects\\Articel\\articel\\Articels\\Articels\\Articels.csproj": {}
   },
   "projects": {
-    "C:\\Users\\khale\\source\\repos\\Articels\\Articels\\Articels.csproj": {
+    "C:\\Users\\khale\\Desktop\\Asp core projects\\Articel\\articel\\Articels\\Articels\\Articels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\khale\\source\\repos\\Articels\\Articels\\Articels.csproj",
+        "projectUniqueName": "C:\\Users\\khale\\Desktop\\Asp core projects\\Articel\\articel\\Articels\\Articels\\Articels.csproj",
         "projectName": "Articels",
-        "projectPath": "C:\\Users\\khale\\source\\repos\\Articels\\Articels\\Articels.csproj",
+        "projectPath": "C:\\Users\\khale\\Desktop\\Asp core projects\\Articel\\articel\\Articels\\Articels\\Articels.csproj",
         "packagesPath": "C:\\Users\\khale\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\khale\\source\\repos\\Articels\\Articels\\obj\\",
+        "outputPath": "C:\\Users\\khale\\Desktop\\Asp core projects\\Articel\\articel\\Articels\\Articels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\khale\\AppData\\Roaming\\NuGet\\NuGet.Config",

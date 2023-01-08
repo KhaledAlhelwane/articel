@@ -102,6 +102,85 @@ namespace Articels.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Articels.Models.Articelss", b =>
+                {
+                    b.Property<int?>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ArticelBody")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ImageOfArticel")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Articels");
+                });
+
+            modelBuilder.Entity("Articels.Models.Comment", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Articelssid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("_comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("Articelssid");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Articels.Models.Openines", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Articelssid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("value")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("Articelssid");
+
+                    b.ToTable("Openines");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -233,6 +312,49 @@ namespace Articels.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Articels.Models.Articelss", b =>
+                {
+                    b.HasOne("Articels.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Articels.Models.Comment", b =>
+                {
+                    b.HasOne("Articels.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Articels.Models.Articelss", "Articelss")
+                        .WithMany()
+                        .HasForeignKey("Articelssid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Articelss");
+                });
+
+            modelBuilder.Entity("Articels.Models.Openines", b =>
+                {
+                    b.HasOne("Articels.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Articels.Models.Articelss", "Articelss")
+                        .WithMany()
+                        .HasForeignKey("Articelssid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Articelss");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

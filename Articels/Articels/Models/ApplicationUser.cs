@@ -11,5 +11,6 @@ namespace Articels.Models
         public DateTime Birth { get; set; }
         public string ?Bio { get; set; }
         public byte[]? ProfilePicture { get; set; }
+        
     }
 }

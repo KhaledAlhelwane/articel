@@ -1,5 +1,6 @@
 using Articels.Data;
 using Articels.Models;
+using Articels.Models.Repository;
 using Articels.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -19,6 +20,7 @@ builder.Services.AddIdentity<ApplicationUser,IdentityRole>(options => options.Si
     .AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IEmailSender,SendingEmail>();
+builder.Services.AddScoped<ICRUD<Articelss>,ArticelsRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
