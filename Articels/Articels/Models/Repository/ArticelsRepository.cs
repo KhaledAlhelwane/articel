@@ -1,8 +1,11 @@
 ﻿using Articels.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace Articels.Models.Repository
 {
+    [Authorize(Roles = "Blogger,User,Admin")]
     public class ArticelsRepository : ICRUD<Articelss>
     {
         private readonly ApplicationDbContext dB;
