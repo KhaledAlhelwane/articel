@@ -3,6 +3,9 @@ using Articels.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
+using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Articels.Controllers.Admin
 {
@@ -24,7 +27,7 @@ namespace Articels.Controllers.Admin
             return View(rolesList);
         }
 
-
+        //for adding roles
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddRole(RoleViewModel collection)
@@ -44,5 +47,53 @@ namespace Articels.Controllers.Admin
             return View("Index", await rolesManger.Roles.ToListAsync());
 
         }
+
+        public async Task<IActionResult> UserRolesIndex()
+        {
+            //var lisat = new UserViewModel();
+            var list = await userManger.Users.Select(x => new UserViewModel
+            {
+                Email = x.Email,
+                FirstName = x.FirstName,
+                id = x.Id,
+                LastName = x.SecoundName,
+                UserName = x.UserName,
+                Roles = userManger.GetRolesAsync(x).Result
+            }).ToListAsync();
+            //foreach(var b in x)
+            //{
+            //    var user = new UserViewModel
+            //    {
+            //        Email = b.Email,
+            //        FirstName = b.FirstName,
+            //        LastName = b.SecoundName,
+            //        Roles = rolesManger.Roles.ToListAsync().Result
+            //    };
+            //}
+            
+            return View(list);
+        }
+
+
+        public async Task<IActionResult> MangeRoles(string Id) {
+            var user = await userManger.FindByIdAsync(Id);
+            if (user == null)
+            {
+                return NotFound(); 
+            }
+            var roles =await rolesManger.Roles.ToListAsync();
+            var UserWithRoles = new UserRoleViewModel
+            {
+                UserId = user.Id,
+                UserName = user.FirstName,
+                roles = roles.Select(role => new RoleViewModel {
+                    Name = role.Name,
+                    CheckingRole = userManger.IsInRoleAsync(user, role.Name).Result
+                }).ToList()
+            };
+
+            return View(UserWithRoles);
+        }
+
     }
 }

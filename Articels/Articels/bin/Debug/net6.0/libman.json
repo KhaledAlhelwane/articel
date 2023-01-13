@@ -2,10 +2,17 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
-  {
-  "provider": "cdnjs",
-  "library": "bootbox.js@6.0.0",
-  "destination": "wwwroot/bootbox.js/"
-}
-]
+    {
+      "library": "bootbox.js@6.0.0",
+      "destination": "wwwroot/bootbox.js/"
+    },
+    {
+      "library": "bootstrap-icons@1.10.3",
+      "destination": "wwwroot/lib/bootstrap-icons/"
+    },
+    {
+      "library": "aos@2.3.4",
+      "destination": "wwwroot/aos/"
+    }
+  ]
 }

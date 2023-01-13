@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Articels.styles.css" asp-append-version="true" />
+	<link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+	<link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+	<link href="~/aos/aos.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -36,11 +39,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Roles</a>
                             </li>
-                                   <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Control Articels</a>
-                            </li>
+                                  
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Control Users</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="UserRolesIndex">Control Users</a>
                             </li>
 
                         }
@@ -67,6 +68,10 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 	<script src="~/bootbox.js/bootbox.js"></script>
 	<script src="~/bootbox.js/bootbox.min.js"></script>
+	<script src="~/aos/aos.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
