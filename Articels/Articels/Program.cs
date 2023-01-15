@@ -21,6 +21,8 @@ builder.Services.AddIdentity<ApplicationUser,IdentityRole>(options => options.Si
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IEmailSender,SendingEmail>();
 builder.Services.AddScoped<ICRUD<Articelss>,ArticelsRepository>();
+builder.Services.AddScoped<ICRUD<Openines>, OpinionRepository>();
+builder.Services.AddScoped<ICRUD<Comment>, CommentRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

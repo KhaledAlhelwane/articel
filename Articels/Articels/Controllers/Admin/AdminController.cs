@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using System.Drawing;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Articels.Controllers.Admin
@@ -94,6 +95,31 @@ namespace Articels.Controllers.Admin
 
             return View(UserWithRoles);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+		public async Task<IActionResult> MangeRoles(UserRoleViewModel model)
+        {
+            var user =await userManger.FindByIdAsync(model.UserId);
+            if (user==null)
+            {
+                return NotFound();
+            }
+            // roles within the user in the database.
+            var UserRoles = await userManger.GetRolesAsync(user);
+            foreach(var role in model.roles)
+            {
+                if (UserRoles.Any(r => r == role.Name)&& !role.CheckingRole)
+                {
+                    await userManger.RemoveFromRoleAsync(user, role.Name);
+                }
+                else if(!UserRoles.Any(r => r == role.Name) && role.CheckingRole)
+                {
+                    await userManger.AddToRoleAsync(user, role.Name);
+                }
+            }
+            return RedirectToAction(nameof(UserRolesIndex));
 
-    }
+        }
+
+	}
 }

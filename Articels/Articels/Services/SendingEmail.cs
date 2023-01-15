@@ -9,8 +9,8 @@ namespace Articels.Services
     {
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var From = "khaled_helwane97@hotmail.com";
-            var pass = "0991025759";
+            var From = "myEmail";
+            var pass = "mypassword";
             var message = new MailMessage();
             message.From = new MailAddress(From);
             message.Subject = subject;

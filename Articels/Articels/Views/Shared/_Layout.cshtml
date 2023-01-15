@@ -25,24 +25,29 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                       
                         @if (User.IsInRole("User"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Articels" asp-action="Index">My Articles</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Articels" asp-action="Index"><i class="bi bi-file-earmark-text"></i> My Articles</a>
                             </li>
                         }
                            @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Roles</a>
-                            </li>
-                                  
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="UserRolesIndex">Control Users</a>
-                            </li>
+                            <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear"></i>  Settings
+          </a>
+          <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index"><i class="bi bi-box-arrow-in-right"></i> Roles</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="UserRolesIndex"><i class="bi bi-toggle2-off"></i> Control Users</a>
+                         </li>
+           
+          </ul>
+        </li>
 
                         }
                     </ul>

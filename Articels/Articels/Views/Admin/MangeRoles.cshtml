@@ -3,33 +3,33 @@
 @{
     ViewData["Title"] = "MangeRoles";
 }
+<form method="post" >
+    <div class="card-header">
+        <h2>@Model.UserName</h2>
+        Add/Remove Role
+        <div class="card-body">
+            <input type="hidden" asp-for="UserId"/>
+           	@for(int i=0;i<Model.roles.Count();i++)
+			{
+				<div class="form-check m-1">
+					<input type="hidden" asp-for="@Model.roles[i].Name"/>
+					<input asp-for="@Model.roles[i].CheckingRole" class="form-check-input"/>
+					<label asp-for="@Model.roles[i].CheckingRole" class="form-check-label">
+						@Model.roles[i].Name
+					</label>
 
-<h1>MangeRoles</h1>
+				</div>
+			}
+			<div asp-validation-summary="All" class="text-danger"></div>
+		
+        </div>
+		<div class="card-footer mt-2">
+			<input type="submit" class="btn btn-primary"/>
+			<a asp-action="UserRolesIndex" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i> Cancle</a>
+		</div>
 
-<h4>UserRoleViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="MangeRoles">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</form>
+
 

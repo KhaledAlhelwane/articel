@@ -15,7 +15,7 @@ namespace Articels.Controllers.Blogger
 
         public UserManager<ApplicationUser> UserManager { get; }
 
-        public ArticelsController(ICRUD<Articelss> ArticelsRepo,UserManager<ApplicationUser> userManager)
+        public ArticelsController(ICRUD<Articelss> ArticelsRepo, UserManager<ApplicationUser> userManager)
         {
             articelsRepo = ArticelsRepo;
             UserManager = userManager;
@@ -25,8 +25,8 @@ namespace Articels.Controllers.Blogger
         {
             var user = UserManager.GetUserAsync(User).Result;
             var ListOfArticels = articelsRepo.List().Where(i => i.ApplicationUser == user);
-           
-            if (ListOfArticels.Count()==0)
+
+            if (ListOfArticels.Count() == 0)
             {
                 ViewBag.success = "false";
                 return View();
@@ -34,7 +34,7 @@ namespace Articels.Controllers.Blogger
             return View(ListOfArticels);
         }
 
-      
+
 
         // GET: ArticelsController/Create
         public ActionResult Create()
@@ -54,21 +54,21 @@ namespace Articels.Controllers.Blogger
                     ModelState.AddModelError("information", "please reach all requirment");
                     return View();
                 }
-                
-               
+
+
                 else
                 {
-                 //   var user = UserManager.FindByNameAsync(HttpContext.User.Identity.Name).Result;
+                    //   var user = UserManager.FindByNameAsync(HttpContext.User.Identity.Name).Result;
                     var user = UserManager.GetUserAsync(User).Result;
                     var image = Request.Form.Files.FirstOrDefault();
-                    
-                        var articel = new Articelss
-                        {
-                            Title = collection.Title,
-                            ArticelBody = collection.Title,
-                            // ImageOfArticel = collection.ImageOfArticel,
-                            ApplicationUser = user
-                        };
+
+                    var articel = new Articelss
+                    {
+                        Title = collection.Title,
+                        ArticelBody = collection.Title,
+                        // ImageOfArticel = collection.ImageOfArticel,
+                        ApplicationUser = user
+                    };
                     using (var datastream = new MemoryStream())
                     {
                         await image.CopyToAsync(datastream);
@@ -77,7 +77,7 @@ namespace Articels.Controllers.Blogger
                     articelsRepo.Add(articel);
                     return RedirectToAction(nameof(Index));
                 }
-                
+
             }
             catch
             {
@@ -141,6 +141,16 @@ namespace Articels.Controllers.Blogger
             {
                 return View();
             }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult like(int id)
+        {
+            //var the_articel = articelsRepo.find(id);
+            //the_articel
+
+            return View();
+
         }
     }
 }

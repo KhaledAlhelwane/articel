@@ -11,9 +11,8 @@ namespace Articels.Models
         public string? ArticelBody { get; set; }
        
         public byte[]? ImageOfArticel { get; set; }
+        //this is the writer of the articel .
         [Required]
         public ApplicationUser ?ApplicationUser { get; set; }
-        //public Comment Comment { get; set; }
-        //public Openines openines { get; set; }
-    }
+         }
 }

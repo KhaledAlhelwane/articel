@@ -35,7 +35,7 @@ namespace Articels.Models.Repository
 
         public List<Articelss> List()
         {
-            return dB.Articels.ToList();        
+            return dB.Articels.Include(x=>x.ApplicationUser).ToList();        
         }
 
         public void Update(Articelss entity)

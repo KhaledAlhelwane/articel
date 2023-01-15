@@ -1,8 +1,44 @@
-﻿@{
+﻿@model IEnumerable<Articelss>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p class="text-warning">Here is the most popular website for making articels writing</p>
+</div>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        var counter = 0;
+        string theclass = null;
+        if (counter % 2 == 0)
+        {
+            theclass = "fade-up";
+        }
+        else
+        {
+            theclass = "fade-down";
+        }
+        <div class="col-sm-3" data-aos=@theclass>
+            <div class="card shadow-lg float" style="width: 18rem;">
+                @if (item.ImageOfArticel != null)
+                {
+                    <img alt="image profile" class="card-img-top" src="data:image*;base64,@(Convert.ToBase64String(item.ImageOfArticel))" />
+                }<div class="card-body ">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                   @* <a asp-action="Details" asp-route-id="@item.id" class="btn btn-primary">Open</a>*@
+                 <a asp-action="Index" class="bi bi-hand-thumbs-up "> </a>
+                   
+                    <br /><b><small>by @item.ApplicationUser.FirstName</small></b>
+                    
+                   
+                </div>
+            </div>
+        </div>
+        counter=counter+1;
+    }
 </div>
